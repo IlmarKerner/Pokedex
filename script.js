@@ -10,6 +10,7 @@ async function loadPokemon() {
     let currentPokemon = await response.json();
     console.log(currentPokemon);
     renderPokemonInfo(currentPokemon);
+
 }
 
 function renderPokemonInfo(currentPokemon) {
