@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+#pokedex {
+    min-height: 50vh;
+    background-color: #FC6C6D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.infocontainer {
+    background-color: white;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    margin-top: -40px;
+    min-height: 100px;
+}
+
+.pokemonElementFire {
+    background-color: #F78C8D;
+    width: 38px;
+    padding: 0px 0px 0px 11px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.headerImages {
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrowBack {
+    width: 25px;
+    cursor: pointer;
+    filter: invert();
+}
+
+.love {
+    width: 25px;
+    cursor: pointer;
+    filter: invert();
+}
