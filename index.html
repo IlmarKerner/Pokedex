@@ -14,17 +14,27 @@
 </head>
 
 <body onload="loadPokemon()">
-    <div class="pokedex" id="pokedex">
-        <div class="headerImages">
-            <img src="img/arrow.png" class="arrowBack">
-            <img src="img/love.png" class="love" id="like" onclick="likePokemon()">
-        </div>
-        <h1 id="pokemonName">Name</h1>
-        <h3 id="pokemonElementFire" class="pokemonElementFire">Fire</h3>
-        <img id="pokemonPicture" class="pokemonPicture">
+    <div class="content">
+        <div class="pokedex" id="pokedex">
+            <div class="headerImages">
+                <img src="img/arrow.png" class="arrowBack">
+                <img src="img/love.png" class="love" id="like" onclick="likePokemon()">
+            </div>
+            <h1 id="pokemonName" class="pokemonName">Name</h1>
+            <div class="pokemonElementFire">
+                <h3 id="pokemonElementFire">Fire</h3>
+                <h3 id="pokemonNumber">#004</h3>
+            </div>
+            <img id="pokemonPicture" class="pokemonPicture">
 
+        </div>
+        <div class="infocontainer">
+            <div class="about" id="about">About</div>
+            <div class="base_stats" id="base_stats">Base Stats</div>
+            <div class="evolution" id="evolution">Evolution</div>
+            <div class="moves" id="moves">Moves</div>
+        </div>
     </div>
-    <div class="infocontainer"></div>
 </body>
 
 </html>

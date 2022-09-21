@@ -20,10 +20,10 @@ function renderPokemonInfo(currentPokemon) {
 function likePokemon() {
     let like = document.getElementById('like');
     if (!like.isliked) {
-        like.src = likehearth;
-        like.isliked == true;
+        like.src = likehearth[0];
+        like.isliked = true;
     } else {
-        like.src = dislikehearth;
-        like.isliked == false;
+        like.src = dislikehearth[0];
+        like.isliked = false;
     }
 }
