@@ -15,7 +15,9 @@ async function loadPokemon() {
 
 function renderPokemonInfo(currentPokemon) {
     document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
-    document.getElementById('pokemonPicture').src = currentPokemon['sprites']['front_shiny'];
+    document.getElementById('pokemonPicture').src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+    document.getElementById('height').innerHTML = currentPokemon['game_indices']['height'];
+    document.getElementById('weight').innerHTML = currentPokemon['types']['weight'];
 }
 
 function likePokemon() {

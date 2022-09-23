@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body onload="loadPokemon()">
@@ -32,27 +35,41 @@
         </div>
         <div class="info">
             <div class="infocontainer">
-                <div>
-                    <h3 class="about margin0" id="about">About</h3>
+                <h3 class="about margin0 height cursor" id="about">About</h3>
+                <h3 class="base_stats margin0 height cursor" id="base_stats">Base Stats</h3>
+                <h3 class="evolution margin0 height cursor" id="evolution">Evolution</h3>
+                <h3 class="moves margin0 height cursor" id="moves">Moves</h3>
+            </div>
+            <div>
+                <div class="primary-abilities">
                     <div class="regular_abilities displayFlex">
                         <span>Species</span>
                         <span>Height</span>
                         <span>Weight</span>
                         <span>Abilities</span>
-
-
-
+                    </div>
+                    <div class="abilities displayFlex">
+                        <span>Species</span>
+                        <span id="height">Height</span>
+                        <span id="weight">Weight</span>
+                        <span>Abilities</span>
                     </div>
                 </div>
-                <div class="base_stats margin0" id="base_stats">Base Stats</div>
-                <div class="evolution margin0" id="evolution">Evolution</div>
-                <div class="moves margin0" id="moves">Moves</div>
             </div>
-            <div>
-                <h2>Breeding</h2>
-                <div class="gender" id="gender">Gender</div>
-                <div class="egg_groups" id="egg_groups">Egg Groups</div>
-                <div class="egg_cycle" id="egg_cycle">Egg Cycle</div>
+            <div class="breeding displayFlex">
+                <h3>Breeding</h3>
+                <div class="second_abilities">
+                    <div class="group1">
+                        <span class="gender" id="gender">Gender</span>
+                        <span class="egg_groups" id="egg_groups">Egg Groups</span>
+                        <span class="egg_cycle" id="egg_cycle">Egg Cycle</span>
+                    </div>
+                    <div class="group2">
+                        <span class="gender" id="gender">Gender</span>
+                        <span class="egg_groups" id="egg_groups">Egg Groups</span>
+                        <span class="egg_cycle" id="egg_cycle">Egg Cycle</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

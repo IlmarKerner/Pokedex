@@ -1,8 +1,10 @@
 body {
     min-height: 100vh;
-    width: 100vw;
     margin: 0;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Grandstander', cursive;
+    background-image: url(img/pokemon-bg.jpg);
+    background-position: 40% 0%;
+    background-attachment: fixed;
 }
 
 .content {
@@ -27,12 +29,16 @@ body {
     margin-top: 10%;
 }
 
+.info {
+    border-radius: 0px 0px 40px 40px;
+    background-color: white;
+}
+
 .infocontainer {
     background-color: white;
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
     margin-top: -40px;
-    min-height: 20vh;
     width: 30vw;
     padding: 24px;
     display: flex;
@@ -76,8 +82,8 @@ body {
 }
 
 .pokemonPicture {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 150px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -86,7 +92,7 @@ body {
 
 .pokemonPicture img {
     position: absolute;
-    width: 300px;
+    width: 200px;
 }
 
 .displayFlex {
@@ -95,14 +101,59 @@ body {
     justify-content: space-between;
 }
 
-.regular_abilities {
-    height: 150px;
+.primary-abilities {
+    margin-top: 50px;
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+    padding: 24px;
+    background-color: white;
 }
 
-.regular_abilities td {
-    gap: 30px;
+.regular_abilities {
+    height: 150px;
+    width: 15vw;
+}
+
+.abilities {
+    width: 15vw;
 }
 
 .margin0 {
-    margin-top: 0px;
+    margin: 0px;
+}
+
+.height {
+    height: 20px;
+}
+
+.breeding {
+    padding: 24px;
+    height: 200px;
+    background-color: white;
+    border-radius: 0px 0px 40px 40px;
+}
+
+.second_abilities {
+    display: flex;
+    justify-content: space-around;
+    height: 130px;
+}
+
+.group1 {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 15vw;
+}
+
+.group2 {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 15vw;
+}
+
+.cursor {
+    cursor: pointer;
 }
