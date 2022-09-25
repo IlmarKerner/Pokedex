@@ -7,39 +7,42 @@ body {
     background-attachment: fixed;
 }
 
-.content {
+.contentcard {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: absolute;
+    z-index: 10;
+    top: 0px;
 }
 
 #pokedex {
-    width: 30vw;
+    min-width: 398px;
     height: 30vh;
-    background-color: #FC6C6D;
+    background-color: #F75231;
     color: white;
     display: flex;
     flex-direction: column;
     padding: 24px;
     align-items: center;
     border-radius: 40px 40px 0px 0px;
-    margin-top: 10%;
 }
 
 .info {
     border-radius: 0px 0px 40px 40px;
     background-color: white;
+    width: 398px;
+    height: 30vh;
 }
 
-.infocontainer {
+.info_container {
     background-color: white;
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
     margin-top: -40px;
-    width: 30vw;
     padding: 24px;
     display: flex;
     justify-content: space-between;
@@ -59,10 +62,16 @@ body {
 }
 
 .pokemonElementFire h3 {
-    background-color: #F78C8D;
-    padding: 5px 20px 5px 20px;
-    border-radius: 10px;
     font-size: 15px;
+    border: 2px solid white;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 700;
+    margin-top: 10px;
+    padding: 3px;
 }
 
 .arrowBack {
@@ -93,6 +102,7 @@ body {
 .pokemonPicture img {
     position: absolute;
     width: 200px;
+    bottom: 0;
 }
 
 .displayFlex {
@@ -104,7 +114,6 @@ body {
 .primary-abilities {
     margin-top: 50px;
     display: flex;
-    width: 30vw;
     justify-content: space-between;
     padding: 24px;
     background-color: white;
@@ -127,33 +136,107 @@ body {
     height: 20px;
 }
 
-.breeding {
-    padding: 24px;
-    height: 200px;
-    background-color: white;
-    border-radius: 0px 0px 40px 40px;
-}
-
-.second_abilities {
-    display: flex;
-    justify-content: space-around;
-    height: 130px;
-}
-
-.group1 {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    width: 15vw;
-}
-
-.group2 {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    width: 15vw;
-}
-
 .cursor {
     cursor: pointer;
+}
+
+.stats {
+    display: flex;
+}
+
+.statName {
+    padding: 24px;
+    height: 300px;
+}
+
+.progress {
+    width: 350px;
+}
+
+.navbar-brand {
+    margin-left: 10%;
+}
+
+.d-flex {
+    margin-right: 10%;
+}
+
+.pokemoncard {
+    cursor: pointer;
+    width: 280px;
+    height: 20vh;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+    margin: 3%;
+    box-shadow: -2px 3px 9px 2px rgb(0 0 0 / 10%);
+    transition: all 100ms ease-in-out;
+    background-color: #F75231;
+}
+
+.headername {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Grandstander', cursive;
+}
+
+.element {
+    font-size: 15px;
+    border: 2px solid black;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.elementTwo {
+    font-size: 15px;
+    border: 2px solid black;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.smalcardheader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemonNumber {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.pokeballimg {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    width: 170px;
+    justify-content: space-between;
+}
+
+.navbar-brand a {
+    font-size: 30px;
+    font-family: 'Grandstander', cursive;
+}
+
+.pokemonimg {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
