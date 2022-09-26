@@ -11,16 +11,19 @@ async function loadPokemon() {
         let response = await fetch(url);
         let currentPokemon = await response.json();
         document.getElementById('pokemoncard').innerHTML += `
-        <div class="smalcardheader">
+        <div class"pokemoncard" onclick="showPokemonDetails()">
+            <div class="smalcardheader">
                 <div class="headername" id="headername">${i}</div>
                 <div class="pokemonNumber" id="number">${i}</div>
             </div>
             <div class="element" id="element">${i}</div>
             <div class="elementTwo" id="elementTwo">${i}</div>
-            <img class="pokemonimg" id="pokemonimg${i}">
+            <img class="pokemonimg" id="pokemonimg" src="${i}">
+        </div>
         `;
         allPokemon.push(currentPokemon, i);
         await renderPokemonInfo(currentPokemon, i);
+        console.log(allPokemon);
     }
 }
 

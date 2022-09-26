@@ -7,6 +7,10 @@ body {
     background-attachment: fixed;
 }
 
+.content {
+    display: flex;
+}
+
 .contentcard {
     width: 100vw;
     height: 100vh;
@@ -163,8 +167,8 @@ body {
 
 .pokemoncard {
     cursor: pointer;
-    width: 280px;
-    height: 20vh;
+    min-width: 280px;
+    min-height: 20vh;
     border: 1px solid lightgray;
     border-radius: 20px;
     display: flex;
