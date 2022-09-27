@@ -10,8 +10,8 @@ async function loadPokemon() {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
         let currentPokemon = await response.json();
-        document.getElementById('pokemoncard').innerHTML += `
-        <div class"pokemoncard" onclick="showPokemonDetails()">
+        document.getElementById(`pokemoncard`).innerHTML += `
+        <div class="pokemoncard" onclick="showPokemonDetails(${i})">
             <div class="smalcardheader">
                 <div class="headername" id="headername">${i}</div>
                 <div class="pokemonNumber" id="number">${i}</div>
@@ -67,8 +67,6 @@ function speciesColors(currentPokemon) {
     let speciesColor = document.getElementById('element').innerHTML = currentPokemon['types']['0']['type']['name'];
     if (speciesColor == 'fire') {
         document.getElementById('pokemoncard').style = 'background-color: yellow;';
-    } else {
-
     }
 }
 
