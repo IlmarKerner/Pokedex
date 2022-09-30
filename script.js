@@ -1,7 +1,7 @@
 let likehearth = ['img/like.png'];
 let dislikehearth = ['img/love.png'];
 let allPokemon = [];
-let MaxPokemon = 20;
+let maxPokemon = 30;
 let currentPokemon;
 let objColors = {
     normal: "#BBBBAD",
@@ -34,7 +34,7 @@ function getCardColor(currentPokemon, i) {
 
 async function loadPokemon() {
     document.getElementById('pokemoncard').innerHTML = '';
-    for (let i = 1; i < MaxPokemon; i++) {
+    for (let i = 1; i < maxPokemon; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
         let currentPokemon = await response.json();
@@ -50,7 +50,6 @@ async function loadPokemon() {
         `;
         allPokemon.push(currentPokemon, i);
         await renderPokemonInfo(currentPokemon, i);
-        console.log(allPokemon);
     }
 }
 
@@ -63,20 +62,87 @@ async function renderPokemonInfo(currentPokemon, i) {
     }
 }
 
-// function checkElements(currentPokemon) {
-//     let elementTwo = document.getElementById('elementTwo').innerHTML = currentPokemon['types']['1']['type']['name'];
-//     let pokemonElementTwo = document.getElementById('pokemonElementTwo').innerHTML = currentPokemon['types']['1']['type']['name'];
-//     if (elementTwo = true) {
-//         elementTwo;
-//         pokemonElementTwo;
-//     } else {
-//         elementTwo.style = "display: none;";
-//         pokemonElementTwo.style = "display: none;";
-//     }
-// }
+function loadDetails(currentPokemon, i) {
+    document.getElementById('contentcard' + i).innerHTML = '';
+    for (let i = 0; i < allPokemon.length; i++) {
+        document.getElementById('contentcard' + i).innerHTML += `
+        <div class="pokedex" id="pokedex">
+        <div class="headerImages">
+                <img src="img/arrow.png" class="arrowBack" onclick="removePokemonCard()">
+                <img src="img/love.png" class="love" id="like${i}" onclick="likePokemon(${i})">
+            </div>
+            <h1 id="pokemonName${i}" class="pokemonName">Name</h1>
+            <div class="pokemonElementFire">
+                <div>
+                    <h3 id="pokemonElement${i}">Fire</h3>
+                </div>
+                <h3 id="pokemonNumber${i}">#004</h3>
+            </div>
+            <div class="pokemonPicture">
+                <img id="pokemonPicture${i}">
+            </div>
+        </div>
+        <div class="info">
+            <div class="info_container">
+                <h3 class="about margin0 height cursor" onclick="changeToAbout()">About</h3>
+                <h3 class="base_stats margin0 height cursor" onclick="changeToBaseStats()">Base Stats</h3>
+            </div>
+            <div>
+                <div class="primary-abilities d-none" id="about${i}">
+                    <div class="regular_abilities displayFlex">
+                        <span><b>Species:</b></span>
+                        <span><b>Height:</b></span>
+                        <span><b>Weight:</b></span>
+                        <span><b>Abilities:</b></span>
+                    </div>
+                    <div class="abilities displayFlex">
+                        <span id="species${i}">Species</span>
+                        <span id="height${i}">Height</span>
+                        <span id="weight${i}">Weight</span>
+                        <span id="abilities${i}">Abilitie</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="stats" id="base_stats${i}">
+                    <div class="statName displayFlex">
+                        <Span>HP</Span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%" id="base_stat"></div>
+                        </div>
+                        <Span>Attack</Span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%" id="attack"></div>
+                        </div>
+                        <Span>Defence</Span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%" id="defence"></div>
+                        </div>
+                        <Span>Special-Attack</Span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%" id="special_attack"></div>
+                        </div>
+                        <Span>Special-Defence</Span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%" id="special_defence"></div>
+                        </div>
+                        <Span>Speed</Span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%" id="speed"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    }
+    for (let index = 0; index < currentPokemon['types'].length; index++) {
+        document.getElementById('pokemonElement' + i).innerHTML += `<div class="element ${currentPokemon['types'][index]['type']['name']}">${currentPokemon['types'][index]['type']['name']}</div>`;
+    }
+}
+
 
 function showPokemonDetails(currentPokemon, i) {
-    document.getElementById('contentcard').classList.remove('d-none');
+    document.getElementById('contentcard' + i).classList.remove('d-none');
     document.getElementById('pokemonName' + i).innerHTML = currentPokemon[`name`];
     document.getElementById('pokemonNumber' + i).innerHTML = currentPokemon['id'] + `#`;
     document.getElementById('pokemonPicture' + i).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
@@ -125,43 +191,3 @@ function changeToBaseStats() {
 function removePokemonCard() {
     document.getElementById('contentcard').classList.add('d-none');
 }
-
-
-
-// async function loadPokemon() {
-//     document.getElementById('pokemoncard').innerHTML = '';
-//     for (let i = 1; i < MaxPokemon; i++) {
-//         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-//         let response = await fetch(url);      
-//         let currentPokemon = await response.json();
-//         document.getElementById(`pokemoncard`).innerHTML += `
-//         <div class="pokemoncard" onclick="showPokemonDetails(${i})">
-//             <div class="smalcardheader">
-//                 <div class="headername" id="headername${i}"></div>
-//                 <div class="pokemonNumber" id="number${i}"></div>
-//             </div>
-//             <div id="types${i}">
-
-//             </div>
-//             <img class="pokemonimg" id="pokemonimg${i}" src="">
-//         </div>
-//         `;
-//         allPokemon.push(currentPokemon, i);
-//         await renderPokemonInfo(currentPokemon, i);
-//         console.log(allPokemon);
-//     }
-// }
-
-// async function renderPokemonInfo(currentPokemon, i) {
-//     document.getElementById('headername' + i).innerHTML = currentPokemon[`name`];
-//     document.getElementById('number' + i).innerHTML = currentPokemon['id'] + `#`;
-//     document.getElementById('pokemonimg' + i).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-
-//     for (let index = 0; index < currentPokemon['types'].length; index++) {
-//          document.getElementById('types' + i).innerHTML += `<div class="element ${currentPokemon['types'][index]['type']['name']}">${currentPokemon['types'][index]['type']['name']}</div>`;
-//     }
-
-
-// document.getElementById('elementTwo' + i).innerHTML = currentPokemon['types']['1']['type']['name'];
-// checkElements(currentPokemon);
-// }
