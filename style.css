@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: 'Grandstander', cursive;
     background-image: url(img/pokemon-bg.jpg);
-    background-position: 40% 0%;
+    background-position: 50% 0%;
     background-attachment: fixed;
 }
 
@@ -190,14 +190,18 @@ body {
 
 .element {
     font-size: 15px;
-    border: 2px solid black;
     width: 75px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     border-radius: 15px;
     font-weight: 700;
     margin-top: 20px;
+}
+
+.element div {
+    border: 2px solid black;
 }
 
 .elementTwo {
@@ -244,4 +248,69 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.poison {
+    background-color: #A95EA1;
+    color: white;
+}
+
+.flying {
+    background-color: #7AA4FF;
+    color: white;
+}
+
+.grass {
+    background-color: #48D0B0;
+}
+
+.water {
+    background-color: #76BDFD;
+}
+
+.fire {
+    background-color: #FB6D6C;
+}
+
+.normal {
+    background-color: #BBBBAD;
+}
+
+.bug {
+    background-color: #C2D11E;
+}
+
+.ground {
+    background-color: peru;
+    color: white;
+}
+
+.fairy {
+    background-color: #FBACFF;
+}
+
+.fighting {
+    background-color: #A55744;
+}
+
+.rock {
+    background-color: #CEBC72;
+}
+
+.ghost {
+    background-color: #7973D5;
+    color: white;
+}
+
+.ice {
+    background-color: #95F1FE;
+}
+
+.dragon {
+    background-color: #8B6653;
+    color: white;
+}
+
+.steel {
+    background-color: #C4C2DA;
 }
