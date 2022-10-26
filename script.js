@@ -38,16 +38,7 @@ async function loadPokemon() {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
         let currentPokemon = await response.json();
-        document.getElementById(`pokemoncard`).innerHTML += `
-        <div class="pokemoncard" onclick="showPokemonDetails(${i})" id="pokemonCard${i}">
-            <div class="smalcardheader">
-                <div class="headername" id="headername${i}"></div>
-                <div class="pokemonNumber" id="number${i}"></div>
-            </div>
-            <div class="element" id="types${i}"></div>
-            <img class="pokemonimg" id="pokemonimg${i}" src="">
-        </div>
-        `;
+        document.getElementById(`pokemoncard`).innerHTML += showPokemonCard(i);
         allPokemon.push(currentPokemon);
         await renderPokemonInfo(currentPokemon, i);
         console.log(currentPokemon, i);
@@ -83,77 +74,8 @@ function showPokemonDetails(i) {
 
     document.getElementById('pokemondetail').classList.remove('d-none');
     pokemondetail = document.getElementById('pokemondetail');
-    pokemondetail.innerHTML = `
-    <div class="pokemon_detail_window" id="pokemonDetailWindow${i}">
-        <div class="content_card">
-            <div class="header_images">
-                <img src="img/arrow.png" onclick="removePokemonCard()">
-                <img src="img/love.png" id="like" onclick="likePokemon()">
-            </div>
-            <div class="pokemon_name">
-                <h4 id="pokemonName">${allPokemon[i-1]['name']}</h4>
-            </div>
-            <div class="header_detail">
-                <div class="pokemon_element">
-                    <h4 id="pokemonElement">${allPokemon[i-1]['types']['0']['type']['name']}</h4>
-                </div>
-                <div class="pokemon_number">
-                    <h4 id="pokemonNumber">#${allPokemon[i-1]['id']}</h4>
-                </div>
-            </div>
-            <div class="pokemon_image">
-                <img id="pokemonImage" src="${allPokemon[i-1]['sprites']['other']['official-artwork']['front_default']}">
-            </div>
-        </div>
-        <div class="pokemon_stats_window">
-            <div class="info_header">
-                <h4 onclick="showAboutInfo()">About</h4>
-                <h4 onclick="showBaseStats()">Base Stats</h4>
-            </div>
-            <div class="about_pokemon" id="aboutPokemon">
-                <div class="about">
-                    <span>Species:</span>
-                    <span>Height:</span>
-                    <span>Weight:</span>
-                    <span>Abilitie:</span>
-                </div>
-                <div class="about_abilities">
-                    <span id="specie">${allPokemon[i-1]['species']['name']}</span>
-                    <span id="height">${allPokemon[i-1]['height']}</span>
-                    <span id="weight">${allPokemon[i-1]['weight']}</span>
-                    <span id="abilitie">${allPokemon[i-1]['abilities']['1']['ability']['name']}</span>
-                </div>
-            </div>
-            <div class="stats d-none" id="stats">
-                <Span>HP</Span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger" id="baseStat">${allPokemon[i-1]['stats']['0']['base_stat']}</div>
-                </div>
-                <Span>Attack</Span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger" id="attack">${allPokemon[i-1]['stats']['1']['base_stat']}</div>
-                </div>
-                <Span>Defence</Span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger" id="defence">${allPokemon[i-1]['stats']['2']['base_stat']}</div>
-                </div>
-                <Span>Special-Attack</Span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger" id="specialAttack">${allPokemon[i-1]['stats']['3']['base_stat']}</div>
-                </div>
-                <Span>Special-Defence</Span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger"  id="specialDefence">${allPokemon[i-1]['stats']['4']['base_stat']}</div>
-                </div>
-                <Span>Speed</Span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-danger" id="speed">${allPokemon[i-1]['stats']['5']['base_stat']}</div>
-                </div>
-            </div>
-        </div>
-    </div>    
-`;
-    showStatsContent(i)
+    pokemondetail.innerHTML = loadPokemonDetails(i);
+    showStatsContent(i);
 
 }
 
@@ -218,49 +140,57 @@ function showSpeed(i) {
     document.getElementById('speed').style = `width: ${speed}%`;
 }
 
-// function filterPokemon(allPokemon, i) {
+function filterPokemon() {
+    let search = document.getElementById('search').value;
+    search = search.toLowerCase(); //Funktion zur Konventierung der großen Buchstaben in kleine Buchstaben
+
+    let pokemonList = document.getElementById('pokemoncard');
+    pokemonList.innerHTML = '';
+
+    for (let i = 0; i < allPokemon.length; i++) {
+        let pokemonName = allPokemon[i]['name'];
+        if (pokemonName.toLowerCase().includes(search)) {
+            pokemonList.innerHTML += `
+                <div class="pokemoncard" onclick="showPokemonDetails(${allPokemon[i]})" id="pokemonCard${allPokemon[i]}">
+                    <div class="smalcardheader">
+                        <div class="headername" id="headername${allPokemon[i]}"></div>
+                        <div class="pokemonNumber" id="number${allPokemon[i]}"></div>
+                    </div>
+                    <div class="element" id="types${allPokemon[i]}"></div>
+                    <img class="pokemonimg" id="pokemonimg${allPokemon[i]}" src="">
+                </div>`;
+        }
+
+    }
+}
+
+
+// function filterPokemon() {
 //     let search = document.getElementById('search').value;
-//     search = search.toLowerCase(); //Funktion zur Konventierung der großen Buchstaben in kleine Buchstaben
+//     search = search.toLowerCase();
+//     let cardContent = document.getElementById('pokemoncard');
+//     cardContent.innerHTML = '';
+//     filterByName(search, cardContent);
 
-//     let pokemonList = document.getElementById('pokemoncard');
-//     pokemonList.innerHTML = '';
+// }
 
+
+// function filterByName(search, cardContent) {
 //     for (let i = 0; i < allPokemon.length; i++) {
-//         let pokemonName = allPokemon[i];
-//         if (pokemonName.toLowerCase().includes(search)) {
-//             pokemonList.innerHTML += `
-//                 <div class="pokemoncard" onclick="showPokemonDetails(${allPokemon[i]})" id="pokemonCard${allPokemon[i]}">
-//                     <div class="smalcardheader">
-//                         <div class="headername" id="headername${allPokemon[i]}"></div>
-//                         <div class="pokemonNumber" id="number${allPokemon[i]}"></div>
-//                     </div>
-//                     <div class="element" id="types${allPokemon[i]}"></div>
-//                     <img class="pokemonimg" id="pokemonimg${allPokemon[i]}" src="">
-//                 </div>`;
+//         currentPokemon = allPokemon[i];
+//         let name = allPokemon[i]['name'];
+//         if (name.includes(search)) {
+//             loadPokemon(i + 1)
+//         } else {
+//             // cardContent.classList.add('d-none');
 //         }
 //     }
 // }
 
-
-function filterPokemon() {
-    let search = document.getElementById('search').value;
-    search = search.toLowerCase();
-    let cardContent = document.getElementById('pokemoncard');
-    cardContent.innerHTML = '';
-    filterByName(search, cardContent);
-
-}
-
-
-function filterByName(search, cardContent) {
-    for (let i = 0; i < allPokemon.length; i++) {
-        currentPokemon = allPokemon[i];
-        let name = allPokemon[i]['name'];
-        if (name.includes(search)) {
-            loadPokemon(currentPokemon, i + 1)
-        } else {
-            // cardContent.classList.add('d-none');
-            alert('match not found');
-        }
-    }
+function deleteSearch() {
+    document.getElementById('pokemoncard').classList.remove('d-none');
+    document.getElementById('search').value = '';
+    allPokemon = [];
+    maxPokemon = 10;
+    loadPokemon();
 }

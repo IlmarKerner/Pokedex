@@ -24,6 +24,30 @@ body {
     top: 0px;
 }
 
+.searchbar_container {
+    margin-right: 10%;
+    width: 300px;
+    background-color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.searchbar_container input {
+    outline: none;
+    background-color: white;
+    border: none;
+    margin-left: 5px;
+    width: 250px;
+}
+
+.searchbar_container img {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
 #pokedex {
     width: 398px;
     height: 30vh;
