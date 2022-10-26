@@ -1,0 +1,150 @@
+.pokemon_details {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+}
+
+.pokemon_detail_window {
+    width: 450px;
+    height: 800px;
+    background-color: rgb(191, 191, 191);
+    border-radius: 40px;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+
+.header_images {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_images img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.pokemon_name {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 10px;
+}
+
+.header_detail {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pokemon_element h4 {
+    background-color: grey;
+    padding: 0px 20px 5px 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+    color: white;
+}
+
+.pokemon_number h4 {
+    background-color: white;
+    padding: 0px 20px 0px 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.pokemon_image {
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+.pokemon_image img {
+    width: 230px;
+    height: 230px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.pokemon_stats_window {
+    width: 100%;
+    height: 450px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    border-radius: 40px;
+}
+
+.info_header {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(191, 191, 191);
+}
+
+.info_header h4 {
+    cursor: pointer;
+}
+
+.about_pokemon {
+    width: 80%;
+    margin-left: 10%;
+    height: 350px;
+    display: flex;
+}
+
+.about {
+    margin-top: 15%;
+    width: 50%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.about span {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.about_abilities {
+    margin-top: 15%;
+    width: 50%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.about_abilities span {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.stats {
+    width: 80%;
+    height: 300px;
+    margin-left: 10%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.progress {
+    width: 100% !important;
+}

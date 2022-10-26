@@ -12,7 +12,7 @@ body {
     flex-wrap: wrap;
 }
 
-.contentcard {
+.pokemondetail {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -25,10 +25,9 @@ body {
 }
 
 #pokedex {
-    min-width: 398px;
+    width: 398px;
     height: 30vh;
     background-color: #F75231;
-    color: white;
     display: flex;
     flex-direction: column;
     padding: 24px;
@@ -56,8 +55,8 @@ body {
 .headerImages {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin-top: 24px;
+    width: 325px;
+    margin-top: 10px;
 }
 
 .pokemonElementFire {
@@ -102,6 +101,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 62px;
 }
 
 .pokemonPicture img {
@@ -122,6 +122,8 @@ body {
     justify-content: space-between;
     padding: 24px;
     background-color: white;
+    height: 250px;
+    border-radius: 0px 0px 40px 40px;
 }
 
 .regular_abilities {
@@ -179,7 +181,7 @@ body {
     margin: 1%;
     box-shadow: -2px 3px 9px 2px rgb(0 0 0 / 10%);
     transition: all 100ms ease-in-out;
-    background-color: #F75231;
+    background-color: rgb(191, 191, 191);
 }
 
 .headername {
