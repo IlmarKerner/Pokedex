@@ -1,5 +1,5 @@
-function loadPokemonDetails(i) {
-    return `<div class="pokemon_detail_window" id="pokemonDetailWindow${i}">
+function loadPokemonDetails(i, currentPokemonColor) {
+    return `<div class="pokemon_detail_window" style="${currentPokemonColor[i]}" id="pokemonDetailWindow${i}">
     <div class="content_card">
         <div class="header_images">
             <img src="img/arrow.png" onclick="removePokemonCard()">
@@ -70,9 +70,9 @@ function loadPokemonDetails(i) {
     `;
 }
 
-function showPokemonCard(i) {
+function showPokemonCard(i, currentPokemonColor) {
     return `
-    <div class="pokemoncard" onclick="showPokemonDetails(${i})" id="pokemonCard${i}">
+    <div class="pokemoncard" style="${currentPokemonColor}" onclick="showPokemonDetails(${i})" id="pokemonCard${i}">
         <div class="smalcardheader">
             <div class="headername" id="headername${i}"></div>
             <div class="pokemonNumber" id="number${i}"></div>

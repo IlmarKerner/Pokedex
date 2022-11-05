@@ -3,6 +3,8 @@ let dislikehearth = ['img/love.png'];
 let allPokemon = [];
 let maxPokemon = 10;
 let currentPokemon;
+let currentPokemonColor;
+let currentPokemonType;
 let objColors = {
     normal: "#BBBBAD",
     grass: "#48D0B0",
@@ -31,14 +33,16 @@ function getCardColor(currentPokemon, i) {
     return objColors[currentPokemon.types[0].type.name];
 }
 
-
 async function loadPokemon() {
     document.getElementById('pokemoncard').innerHTML = '';
     for (let i = 1; i < maxPokemon; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
         let currentPokemon = await response.json();
-        document.getElementById(`pokemoncard`).innerHTML += showPokemonCard(i);
+        let firstType = currentPokemon.types[0].type.name;
+        currentPokemonColor = `background: ${objColors[firstType]};`;
+        document.getElementById(`pokemoncard`).innerHTML += showPokemonCard(i, currentPokemonColor);
+        pokemonBackgroundColor(currentPokemonColor[i]);
         allPokemon.push(currentPokemon);
         await renderPokemonInfo(currentPokemon, i);
         console.log(currentPokemon, i);
@@ -50,8 +54,16 @@ async function renderPokemonInfo(currentPokemon, i) {
     document.getElementById('headername' + i).innerHTML = currentPokemon[`name`];
     document.getElementById('number' + i).innerHTML = currentPokemon['id'] + `#`;
     document.getElementById('pokemonimg' + i).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+
     for (let j = 0; j < currentPokemon['types'].length; j++) {
         document.getElementById('types' + i).innerHTML += `<div class="element ${currentPokemon['types'][j]['type']['name']}">${currentPokemon['types'][j]['type']['name']}</div>`;
+    }
+
+}
+
+function pokemonBackgroundColor(currentPokemonColor) {
+    if (currentPokemonType == 'grass') {
+        return currentPokemonColor = 'background-color: #48D0B0;'
     }
 }
 
@@ -71,19 +83,12 @@ function removePokemonCard() {
 }
 
 function showPokemonDetails(i) {
-
     document.getElementById('pokemondetail').classList.remove('d-none');
     pokemondetail = document.getElementById('pokemondetail');
-    pokemondetail.innerHTML = loadPokemonDetails(i);
+    pokemondetail.innerHTML = loadPokemonDetails(i, currentPokemonColor);
     showStatsContent(i);
 
 }
-
-// function renderPokemonType(i) {
-//     for (let j = 0; j < allPokemon[i - 1]['pokemonElement'].length; j++) {
-//         document.getElementById('pokemonElements' + i).innerHTML += `<div class="element ${allPokemon[i-1]['types'][j]['type']['name']}">${allPokemon[i-1]['types'][j]['type']['name']}</div>`;
-//     }
-// }
 
 function showBaseStats() {
     document.getElementById('aboutPokemon').classList.add('d-none');
@@ -102,6 +107,11 @@ function showStatsContent(i) {
     showSpecialAttack(i);
     showSpecialDefence(i);
     showSpeed(i);
+}
+
+function backgroundColorDetail() {
+    let pokemonDetailBackgroundcolor = document.getElementById('pokemonDetailWindow' + i);
+    pokemonDetailBackgroundcolor.classList.add(`grass`);
 }
 
 function showHP(i) {
@@ -140,53 +150,6 @@ function showSpeed(i) {
     document.getElementById('speed').style = `width: ${speed}%`;
 }
 
-function filterPokemon() {
-    let search = document.getElementById('search').value;
-    search = search.toLowerCase(); //Funktion zur Konventierung der großen Buchstaben in kleine Buchstaben
-
-    let pokemonList = document.getElementById('pokemoncard');
-    pokemonList.innerHTML = '';
-
-    for (let i = 0; i < allPokemon.length; i++) {
-        let pokemonName = allPokemon[i]['name'];
-        if (pokemonName.toLowerCase().includes(search)) {
-            pokemonList.innerHTML += `
-                <div class="pokemoncard" onclick="showPokemonDetails(${allPokemon[i]})" id="pokemonCard${allPokemon[i]}">
-                    <div class="smalcardheader">
-                        <div class="headername" id="headername${allPokemon[i]}"></div>
-                        <div class="pokemonNumber" id="number${allPokemon[i]}"></div>
-                    </div>
-                    <div class="element" id="types${allPokemon[i]}"></div>
-                    <img class="pokemonimg" id="pokemonimg${allPokemon[i]}" src="">
-                </div>`;
-        }
-
-    }
-}
-
-
-// function filterPokemon() {
-//     let search = document.getElementById('search').value;
-//     search = search.toLowerCase();
-//     let cardContent = document.getElementById('pokemoncard');
-//     cardContent.innerHTML = '';
-//     filterByName(search, cardContent);
-
-// }
-
-
-// function filterByName(search, cardContent) {
-//     for (let i = 0; i < allPokemon.length; i++) {
-//         currentPokemon = allPokemon[i];
-//         let name = allPokemon[i]['name'];
-//         if (name.includes(search)) {
-//             loadPokemon(i + 1)
-//         } else {
-//             // cardContent.classList.add('d-none');
-//         }
-//     }
-// }
-
 function deleteSearch() {
     document.getElementById('pokemoncard').classList.remove('d-none');
     document.getElementById('search').value = '';
@@ -194,3 +157,66 @@ function deleteSearch() {
     maxPokemon = 10;
     loadPokemon();
 }
+
+function getCardColorFiltered(allPokemon, i) {
+    return objColors[allPokemon.types[0].type.name];
+}
+
+function getPokemonById(id) {
+    return allPokemon.find(p => p.id == id);
+}
+
+function filterPokemon(event) {
+    let searchString = event.target.value.toLowerCase();
+    let filteredPokemon = allPokemon.filter((pokemon) => {
+        return (
+            pokemon['name'].toLowerCase().includes(searchString)
+        );
+    });
+    displayCharacters(filteredPokemon);
+}
+
+function getTypesHTML(allPokemon) {
+    let types = allPokemon['types'][0]['type']['name'];
+    let html = '';
+
+    for (let p = 0; p < allPokemon['types'].length; p++) {
+        html += `<div class="element ${pokemon['types'][j]['type']['name']}">${pokemon['types'][j]['type']['name']}</div>`;
+    }
+    return html;
+}
+
+function displayCharacters(filteredPokemon, pokemon) {
+    let htmlString = document.getElementById('pokemoncard');
+    htmlString.innerHTML = '';
+    htmlString.innerHTML = filteredPokemon.map((pokemon) => {
+            return `
+            <div class="pokemoncard ${pokemon['types'][0]['type']['name']}"  onclick="showPokemonDetails(${pokemon.id})" id="pokemonCard${getPokemonIndex(pokemon)}">
+            <div class="smalcardheader">
+                <div class="headername" id="headername${getPokemonIndex(pokemon)}">${allPokemon[getPokemonIndex(pokemon)]['name']}</div>
+                <div class="pokemonNumber" id="number${getPokemonIndex(pokemon)}">${allPokemon[getPokemonIndex(pokemon)]['id']}#</div>
+            </div>
+            <div class="element2 ${pokemon['types'][0]['type']['name']}" id="types${getPokemonIndex(pokemon)}">${allPokemon[getPokemonIndex(pokemon)]['types']['0']['type']['name']}</div>
+            <img class="pokemonimg" id="pokemonimg${getPokemonIndex(pokemon)}" src="${allPokemon[getPokemonIndex(pokemon)]['sprites']['other']['official-artwork']['front_default']}">
+        </div>
+        `;
+
+        })
+        .join('');
+
+};
+
+function getPokemonIndex(pokemon) {
+    return allPokemon.indexOf(pokemon);
+}
+
+// async function renderPokemonInfo(currentPokemon, i) {
+//     document.getElementById('headername' + i).innerHTML = currentPokemon[`name`];
+//     document.getElementById('number' + i).innerHTML = currentPokemon['id'] + `#`;
+//     document.getElementById('pokemonimg' + i).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+
+//     for (let j = 0; j < currentPokemon['types'].length; j++) {
+//         document.getElementById('types' + i).innerHTML += `<div class="element ${currentPokemon['types'][j]['type']['name']}">${currentPokemon['types'][j]['type']['name']}</div>`;
+//     }
+
+// }

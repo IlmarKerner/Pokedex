@@ -9,7 +9,6 @@
 .pokemon_detail_window {
     width: 450px;
     height: 800px;
-    background-color: rgb(191, 191, 191);
     border-radius: 40px;
     flex-direction: column;
     position: absolute;
