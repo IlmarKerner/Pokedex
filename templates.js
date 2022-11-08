@@ -1,6 +1,6 @@
-function loadPokemonDetails(i, currentPokemonColor) {
-    return `<div class="pokemon_detail_window" style="${currentPokemonColor[i]}" id="pokemonDetailWindow${i}">
-    <div class="content_card">
+function loadPokemonDetails(i) {
+    return `<div class="pokemon_detail_window ${allPokemon[i-1]['types']['0']['type']['name']}" id="pokemonDetailWindow${i}">
+    <div class="content_card ${allPokemon[i-1]['types']['0']['type']['name']}">
         <div class="header_images">
             <img src="img/arrow.png" onclick="removePokemonCard()">
             <img src="img/love.png" id="like" onclick="likePokemon()">
@@ -9,8 +9,7 @@ function loadPokemonDetails(i, currentPokemonColor) {
             <h4 id="pokemonName">${allPokemon[i-1]['name']}</h4>
         </div>
         <div class="header_detail">
-            <div class="pokemon_element">
-                <h4 id="pokemonElement">${allPokemon[i-1]['types']['0']['type']['name']}</h4>
+            <div class="pokemon_element ${allPokemon[i-1]['types'][0]['type']['name']}" id="pokemonElement${i}">
             </div>
             <div class="pokemon_number">
                 <h4 id="pokemonNumber">#${allPokemon[i-1]['id']}</h4>
@@ -36,7 +35,7 @@ function loadPokemonDetails(i, currentPokemonColor) {
                 <span id="specie">${allPokemon[i-1]['species']['name']}</span>
                 <span id="height">${allPokemon[i-1]['height']}</span>
                 <span id="weight">${allPokemon[i-1]['weight']}</span>
-                <span id="abilitie">${allPokemon[i-1]['abilities']['1']['ability']['name']}</span>
+                <span id="abilitie">${allPokemon[i-1]['abilities']['0']['ability']['name']}</span>
             </div>
         </div>
         <div class="stats d-none" id="stats">
@@ -66,13 +65,17 @@ function loadPokemonDetails(i, currentPokemonColor) {
             </div>
         </div>
     </div>
+    <div class="poke_switches"> 
+        <img id="switchLeft" src="img/left-arrow.png" onclick="goToPreventPokemon(${i})">
+        <img id="switchRight" src="img/right-arrow.png" onclick="goToNextPokemon(${i})">
+    </div>
 </div>   
     `;
 }
 
 function showPokemonCard(i, currentPokemonColor) {
     return `
-    <div class="pokemoncard" style="${currentPokemonColor}" onclick="showPokemonDetails(${i})" id="pokemonCard${i}">
+    <div class="pokemoncard" style="${currentPokemonColor}" onclick="showPokemonDetails(${i}), renderPokemonDetailInfo(${allPokemon, i})" id="pokemonCard${i}">
         <div class="smalcardheader">
             <div class="headername" id="headername${i}"></div>
             <div class="pokemonNumber" id="number${i}"></div>
@@ -93,3 +96,10 @@ function showSearchedPokemonCard(allPokemon, i) {
         <img class="pokemonimg" id="Pokemonimg${allPokemon[i]}" src="">
     </div>`
 }
+
+
+// div class = "pokemon_element ${allPokemon[i-1]['types']['0']['type']['name']}"
+// id = "pokemonElement${i}" >
+
+//     h4 style = "text-align: center;" > $ { allPokemon[i - 1]['types']['0']['type']['name'] } < /h4> <
+//     /div

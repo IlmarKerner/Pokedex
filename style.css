@@ -7,9 +7,33 @@ body {
     background-attachment: fixed;
 }
 
+.headerbar {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.load_pokemon {
+    width: 17%;
+    border: none;
+    border-radius: 15px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.load_pokemon:hover {
+    background-color: lightgrey;
+    transition: all 200ms ease-in-out;
+}
+
 .content {
     display: flex;
     flex-wrap: wrap;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 75px;
+    justify-content: center;
 }
 
 .pokemondetail {
@@ -40,7 +64,7 @@ body {
     background-color: white;
     border: none;
     margin-left: 5px;
-    width: 250px;
+    width: 290px;
 }
 
 .searchbar_container img {
@@ -195,14 +219,14 @@ body {
 .pokemoncard {
     cursor: pointer;
     min-width: 280px;
-    min-height: 20vh;
+    min-height: 210px;
     border: 1px solid lightgray;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 20px;
-    margin: 1%;
+    margin: 5px;
     box-shadow: -2px 3px 9px 2px rgb(0 0 0 / 10%);
     transition: all 100ms ease-in-out;
 }
@@ -286,4 +310,27 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+@media (max-width: 670px) {
+    .content {
+        margin-top: 130px;
+    }
+    .searchbar_container {
+        outline: none;
+        background-color: white;
+        border: none;
+        width: 220px !important;
+        margin: 0px;
+    }
+    .container-fluid {
+        display: flex;
+        flex-direction: column;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100vw !important;
+    }
+    .navbar-brand {
+        margin: 0;
+    }
 }
